@@ -10,16 +10,58 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    component: () => import('../views/AboutView.vue')
+  },
+  //Category
+  {
+    path: '/category',
+    name: 'category',
+    component: () => import('../views/Category/CategoryList.vue'),
+  },
+  {
+    path: '/category/:name',
+    name: 'FilterByCategory',
+    component: () => import('../views/Category/CategoryMovieList.vue'),
+  },
+  //Movies
+  {
+    path: '/movies',
+    name: 'movieList',
+    component: () => import('../views/Movie/MovieView.vue'),
+  },
+  {
+    path: '/movies/:id',
+    name: 'movieInfo',
+    component: () => import('../views/Movie/MovieInfo.vue'),
+  },
+  {
+    path: '/movies/show',
+    name: 'showMovie',
+    component: () => import('../views/Movie/MovieShow.vue'),
+  },
+  //Ads Routes
+  {
+    path: '/four-ads',
+    name: 'fourAds',
+    component: () => import('../views/Ads/FourAds.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('../views/errors/404View.vue'),
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
 })
 
 export default router
