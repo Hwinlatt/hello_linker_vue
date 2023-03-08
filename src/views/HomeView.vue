@@ -7,9 +7,14 @@
       <CardCarousel :autoplay="2000" v-if="newMov.length > 0" :data="newMov"></CardCarousel>
     </div>
     <div class="mt-6">
-      <h2 class="text-center text-xl"><i class="fa-solid fa-fire-flame-curved"></i> Popular Movies</h2>
+      <h2 class="text-center text-xl"><i class="fa-solid fa-fire-flame-curved text-red-500"></i> Popular Movies</h2>
       <div class="line-mf"></div>
       <CardCarousel :autoplay="3000" v-if="popularMov.length > 0" :data="popularMov"></CardCarousel>
+    </div>
+    <div class="mt-6">
+      <h2 class="text-center text-xl"><i class="fa-solid fa-circle-down text-indigo-600"></i> Most Download Movies</h2>
+      <div class="line-mf"></div>
+      <CardCarousel :autoplay="4000" v-if="mostDownMov.length > 0" :data="mostDownMov"></CardCarousel>
     </div>
   </div>
 </template>
@@ -25,7 +30,8 @@ import { mapGetters } from 'vuex';
       return {
         slideShows: [],
         popularMov : [] ,
-        newMov:[]
+        newMov:[],
+        mostDownMov:[],
       }
     },
     components: {
@@ -38,6 +44,7 @@ import { mapGetters } from 'vuex';
           this.slideShows = r.data.slideShow;
           this.popularMov = r.data.popularMovies;
           this.newMov = r.data.newMovies;
+          this.mostDownMov = r.data.mostDownloadMoves;  
           this.$store.dispatch('pageStatusChg','show');
         })
       }

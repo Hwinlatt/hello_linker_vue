@@ -1,6 +1,8 @@
 <template>
     <div class="w-full md:grid grid-cols-12  mt-2 ">
-        <div class="col-span-2"></div>
+        <div class="col-span-2">
+            <DisplayAds />
+        </div>
         <div class="col-span-8">
             <div class="grid  grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5" v-if="data.length > 0">
                 <div v-for="(movie, index) in data" :key="index" class="m-1 cursor-pointer p-3"
@@ -55,10 +57,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-span-2">
+            <DisplayAds />
+        </div>
     </div>
 </template>
 
 <script>
+import DisplayAds from '@/views/Ads/types/DisplayAds.vue'
 import { mapGetters } from 'vuex'
 export default {
     name: "MovieList",
@@ -71,6 +77,9 @@ export default {
             default: '',
         }
     },
+    components: {
+        DisplayAds,
+    },
     methods: {
         goToMovieInfo(mId) {
             this.$router.push({ name: 'movieInfo', params: { id: mId } })
@@ -82,6 +91,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

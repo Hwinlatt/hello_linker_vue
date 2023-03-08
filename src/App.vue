@@ -14,6 +14,7 @@ import SyncLoader from 'vue-spinner/src/SyncLoader.vue'
 import NavBar from './components/NavBar.vue';
 import BottomBar from './components/BottomBar.vue'
 import { mapState } from 'vuex';
+
 export default {
   name: 'App',
   components: {

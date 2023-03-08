@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="m-1">
-            <input @keypress.enter="searchMovie()" type="search" v-model="searchKey" class="w-full searchInput dark:bg-slate-700 dark:placeholder:text-slate-200 px-1 rounded-md border-0 outline-none p-2 focus:shadow-mds hidden dark:text-white" placeholder="Please Enter">
+            <input @keypress.enter="searchMovie()" type="search" v-model="searchKey" class="w-full searchInput dark:bg-slate-700 dark:placeholder:text-slate-200 px-1 rounded-md border-0 outline-none p-2 focus:shadow-mds hidden dark:text-white" placeholder="Search Movies">
         </div>
     </nav>
 </template>

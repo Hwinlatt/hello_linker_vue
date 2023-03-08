@@ -1,7 +1,7 @@
 <template>
     <div class="w-full sm:grid sm:grid-cols-12">
         <div class="sm:col-span-2">
-            For Ads
+            <DisplayAdsVue/>
         </div>
         <div class="sm:col-span-8">
             <div>
@@ -11,7 +11,7 @@
                     </div>
                 </span><br>
                 <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                    For Ads
+                    <!-- <InArticleAdsVue/> -->
                 </div>
                 Beauty is commonly described as a feature of objects that makes these objects pleasurable to perceive.
                 Such objects include landscapes, sunsets, humans and works of art. Beauty, together with art and taste,
@@ -23,7 +23,7 @@
                     </div>
                 </span><br>
                 <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                    For Ads
+                    <InArticleAdsVue/>
                 </div>
                 One difficulty in understanding beauty is because it has both objective and subjective aspects: it is
                 seen as a property of things but also as depending on the emotional response of observers. Because of
@@ -38,7 +38,7 @@
                     </div>
                 </span><br>
                 <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                    For Ads
+                    <!-- <InArticleAdsVue/> -->
                 </div>
                 Conceptions of beauty aim to capture what is essential to all beautiful things. Classical conceptions
                 define beauty in terms of the relation between the beautiful object as a whole and its parts: the parts
@@ -62,7 +62,7 @@
                 {{ movie.description }}
             </div>
             <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                For Ads
+                <InArticleAdsVue/>
             </div>
             <div v-if="isLinkGet" class="mt-4">
                 <table class=" table-auto w-full border-collapse border-gray-500 border">
@@ -117,6 +117,9 @@
                     Download</button>
             </div>
         </div>
+        <div class="sm:col-span-2">
+            <DisplayAdsVue/>
+        </div>
     </div>
     <ScreenFullAds v-if="showAds"></ScreenFullAds>
 </template>
@@ -124,13 +127,15 @@
 <script>
 import axios from 'axios';
 import ScreenFullAds from '@/views/Ads/ScreenFullAds.vue';
-import usefulFunction from '@/assets/js/usefulFunction'
+import usefulFunction from '@/assets/js/usefulFunction';
 import { mapGetters, mapState } from 'vuex';
 import $ from 'jquery'
+import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
+import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
 export default {
     name: 'MovieShow',
     components: {
-        ScreenFullAds,
+        ScreenFullAds,InArticleAdsVue,DisplayAdsVue
     },
     mixins: [usefulFunction],
     data() {

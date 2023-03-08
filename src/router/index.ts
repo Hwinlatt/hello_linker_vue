@@ -1,6 +1,7 @@
+import axios from 'axios'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import store from '@/store'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -39,6 +40,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'showMovie',
     component: () => import('../views/Movie/MovieShow.vue'),
   },
+
+  //Actors
+  {
+    path: '/actors',
+    name: 'actorsList',
+    component: () => import('../views/Actors/ActorsList.vue'),
+  },
+  {
+    path: '/actors/:name',
+    name: 'FilterByActor',
+    component: () => import('../views/Actors/ActorMovieList.vue'),
+  },
   //Ads Routes
   {
     path: '/four-ads',
@@ -47,9 +60,14 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:pathMatch(.*)*',
+    redirect: { name: 'notFound' }
+  },
+  {
+    path: '/not_found',
     name: 'notFound',
     component: () => import('../views/errors/404View.vue'),
   },
+
 ]
 
 const router = createRouter({
@@ -63,5 +81,11 @@ const router = createRouter({
     }
   },
 })
+
+// router.beforeEach((to, from, next) => {
+//   // ...
+//   // explicitly return false to cancel the navigation
+//   return next()
+// })
 
 export default router

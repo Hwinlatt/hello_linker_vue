@@ -1,33 +1,39 @@
 <template>
-    <div class="w-full">
-        <div class=" sm:grid sm:grid-cols-12">
+        <div class="w-full sm:grid sm:grid-cols-12">
             <div class="hidden sm:block sm:col-span-3">
-                For Ads
+                <DisplayAdsVue/>
             </div>
             <ul class="sm:col-span-6">
-                <li @click="goFilterByCategory(category)"  v-for="(category,index) in categories" class=" h-20 px-3 hover:bg-slate-500 cursor-pointer border-b border-gray-600"
+                <li>
+                    <DisplayAdsVue/>
+                </li>
+                <li   v-for="(category,index) in categories" class="px-3 hover:bg-slate-500 cursor-pointer border-b border-gray-600"
                     :key="index">
-                    <div class="flex  h-full items-center justify-center">
+                    <div @click="goFilterByCategory(category)" class="flex h-20   items-center justify-center">
                         <h1 class="text-lg font-semibold capitalize">{{ category }}</h1>
                     </div>
                 </li>
             </ul>
-            <div class="hidden sm:block sm:col-span-3">
-                For Ads
+            <div class="hidden sm:block sm:col-span-2">
+                <DisplayAdsVue/>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { mapGetters } from 'vuex';
+// import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
+import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
 export default {
     name: 'CategoryList',
     data() {
         return {
             categories: [],
         }
+    },
+    components: {
+        DisplayAdsVue
     },
     methods: {
         goFilterByCategory(category) {

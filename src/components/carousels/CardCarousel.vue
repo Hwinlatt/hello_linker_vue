@@ -1,5 +1,5 @@
 <template>
-    <Carousel :transition="1000" :wrapAround="true" :pauseAutoplayOnHover="true" :itemsToScroll="2"  :autoplay="autoplay" :settings="settings" :breakpoints="breakpoints">
+    <Carousel :transition="600" :wrapAround="true" :pauseAutoplayOnHover="true" :itemsToScroll="2"  :autoplay="autoplay" :settings="settings" :breakpoints="breakpoints">
         <Slide v-for="(movie, index) in data" :key="index">
             <div class="carousel__item">
                 <div class="w-full cursor-pointer" @click="goToMovieInfo(movie.id)">
