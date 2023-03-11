@@ -14,6 +14,7 @@
                 </select>
             </div>
         </div>
+        <DisplayAdsVue></DisplayAdsVue>
         <MovieList class="clear-both" :status="status" :data="movies"></MovieList>
         <div class="flex justify-center mt-3">
             <v-pagination v-model="pagination.page" :pages="pagination.pageCount" :range-size="2" active-color="#DCEDFF"
@@ -28,6 +29,7 @@ import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import axios from 'axios';
 import { mapGetters, mapState } from 'vuex';
+import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
 export default {
     name: 'MovieView',
     data() {
@@ -42,7 +44,7 @@ export default {
         }
     },
     components: {
-        MovieList, VPagination
+        MovieList, VPagination,DisplayAdsVue
     },
     watch: {
         '$route.query': {

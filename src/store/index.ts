@@ -4,7 +4,7 @@ export default createStore({
   state: {
     ads: {
       //Make True To Show Ads on Production
-      show: false,
+      show: true,
       adClient: 'ca-pub-4711089720936751',
       displayAds: ['2434317999', '6565579201', '4222251810', '9318935328'],
       articleAds: ['4008516864', '7642396731'],

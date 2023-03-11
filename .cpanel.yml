@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/USERNAME/public_html/hello_linker_vue
+    - /bin/cp -rf $SOURCE_DIR/dist/* $DEPLOYPATH

@@ -47,12 +47,6 @@
                 be beautiful is for it to cause disinterested pleasure. Other conceptions include defining beautiful
                 objects in terms of their value, of a loving attitude towards them or of their function.
             </div>
-            <div class="my-6">
-                <h1 class="text-xl font-bold">{{ movie.name }}</h1>
-                <div class="w-full mt-12" id="playMovieContainer" v-html="movieContainer">
-
-                </div>
-            </div>
             <div class="px-1">
                 <div class=" font-bold text-two-color text-2xl">Please Scroll Down
                     <div class="inline-block">
@@ -60,6 +54,12 @@
                     </div>
                 </div>
                 {{ movie.description }}
+            </div>
+            <div class="my-6">
+                <h1 class="text-xl font-bold">{{ movie.name }}</h1>
+                <div class="w-full mt-12" id="playMovieContainer" v-html="movieContainer">
+
+                </div>
             </div>
             <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
                 <InArticleAdsVue/>
