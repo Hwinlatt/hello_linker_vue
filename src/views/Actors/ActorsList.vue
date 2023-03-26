@@ -1,12 +1,12 @@
 <template>
     <div class="w-full">
         <div class=" sm:grid sm:grid-cols-12">
-            <div class="hidden sm:block sm:col-span-3">
+            <div class=" sm:block sm:col-span-3">
                 <DisplayAdsVue />
             </div>
             <div class="sm:col-span-6">
                 <div>
-                    <InArticleAdsVue></InArticleAdsVue>
+                    <InFeedAdsVue></InFeedAdsVue>
                 </div>
                 <div class="px-1 mt-4 mb-2">
                     <input @keyup="searchActors()" v-model="searchKeyActor" type="text"
@@ -20,11 +20,8 @@
                         </div>
                     </li>
                 </ul>
-                <div>
-                    <InArticleAdsVue></InArticleAdsVue>
-                </div>
             </div>
-            <div class="hidden sm:block sm:col-span-2">
+            <div class=" sm:block sm:col-span-2">
                 <DisplayAdsVue />
             </div>
         </div>
@@ -35,7 +32,7 @@
 import axios from 'axios';
 import { mapGetters, mapState } from 'vuex';
 import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
-import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
+import InFeedAdsVue from '../Ads/types/InFeedAds.vue';
 export default {
     name: 'ActorsList',
     data() {
@@ -45,7 +42,7 @@ export default {
         }
     },
     components: {
-        DisplayAdsVue, InArticleAdsVue
+        DisplayAdsVue, InFeedAdsVue
     },
     methods: {
         goFilterByActor(actor) {
@@ -83,7 +80,7 @@ export default {
         this.$store.dispatch('activePageChg', { name: 'actors' });
         setTimeout(() => {
             this.getActorsList();
-        }, 100);
+        }, 10);
     },
 }
 </script>

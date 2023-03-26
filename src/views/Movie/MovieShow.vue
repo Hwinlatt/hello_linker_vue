@@ -4,14 +4,14 @@
             <DisplayAdsVue/>
         </div>
         <div class="sm:col-span-8">
-            <div>
+            <!-- <div>
                 <br><span class=" font-bold text-two-color text-2xl">Please Scroll Down
                     <div class="inline-block">
                         <i class="fa-solid  fa-arrow-down animate-bounce text-two-color"></i>
                     </div>
                 </span><br>
                 <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                    <!-- <InArticleAdsVue/> -->
+                    <InArticleAdsVue/>
                 </div>
                 Beauty is commonly described as a feature of objects that makes these objects pleasurable to perceive.
                 Such objects include landscapes, sunsets, humans and works of art. Beauty, together with art and taste,
@@ -38,7 +38,7 @@
                     </div>
                 </span><br>
                 <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
-                    <!-- <InArticleAdsVue/> -->
+                    <InArticleAdsVue/>
                 </div>
                 Conceptions of beauty aim to capture what is essential to all beautiful things. Classical conceptions
                 define beauty in terms of the relation between the beautiful object as a whole and its parts: the parts
@@ -54,16 +54,16 @@
                     </div>
                 </div>
                 {{ movie.description }}
-            </div>
+            </div> -->
             <div class="my-6">
                 <h1 class="text-xl font-bold">{{ movie.name }}</h1>
                 <div class="w-full mt-12" id="playMovieContainer" v-html="movieContainer">
 
                 </div>
             </div>
-            <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
+            <!-- <div class=" h-36 flex items-center justify-center bg-gray-500 w-full">
                 <InArticleAdsVue/>
-            </div>
+            </div> -->
             <div v-if="isLinkGet" class="mt-4">
                 <table class=" table-auto w-full border-collapse border-gray-500 border">
                     <thead>
@@ -129,13 +129,14 @@ import axios from 'axios';
 import ScreenFullAds from '@/views/Ads/ScreenFullAds.vue';
 import usefulFunction from '@/assets/js/usefulFunction';
 import { mapGetters, mapState } from 'vuex';
-import $ from 'jquery'
 import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
 import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
 export default {
     name: 'MovieShow',
     components: {
-        ScreenFullAds,InArticleAdsVue,DisplayAdsVue
+        ScreenFullAds,
+        // InArticleAdsVue,
+        DisplayAdsVue
     },
     mixins: [usefulFunction],
     data() {

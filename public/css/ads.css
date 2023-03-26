@@ -1,3 +1,29 @@
-/* ins.adsbygoogle[data-ad-status="unfilled"] {
+ins.adsbygoogle[data-ad-status="unfilled"] {
     display: none !important;
-} */
+}
+
+
+.pagination-container {
+    display: flex;
+    column-gap: 10px;
+  }
+  .paginate-buttons {
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: black;
+    border: 1px solid rgb(217, 217, 217);
+    color: #CBD5E1;
+  }
+  .paginate-buttons:hover {
+    background-color: #221f1f;
+  }
+  .active-page {
+    background-color: #5F46DD;
+    border: 1px solid #5F46DD;
+    color: white;
+  }
+  .active-page:hover {
+    background-color: #5F46DD;
+  }

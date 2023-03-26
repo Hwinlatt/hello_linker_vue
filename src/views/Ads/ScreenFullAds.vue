@@ -26,7 +26,7 @@ export default {
     },
     data() {
         return {
-            count: 7,
+            count: 3,
             isClosed: false
         }
     },

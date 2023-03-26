@@ -2,8 +2,8 @@
     <div class="w-full">
         <MovieList  :status="status" :data="movies"></MovieList>
         <div class="flex justify-center mt-3">
-            <v-pagination v-model="pagination.page" :pages="pagination.pageCount" :range-size="2" active-color="#DCEDFF"
-                @update:modelValue="getMovieByCategory" />
+            <vue-awesome-paginate :total-items="pagination.totalItems" v-model="currentPage"
+                :items-per-page="pagination.perPage" :max-pages-shown="4" :on-click="getMovieByCategory" />
         </div>
     </div>
 </template>
@@ -12,22 +12,23 @@
 import MovieList from '@/components/MovieList.vue'
 import axios from 'axios';
 import { mapGetters } from 'vuex';
-import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+import { VueAwesomePaginate } from 'vue-awesome-paginate';
 export default {
     name: 'CategoryMovieList',
     data() {
         return {
             movies: [],
+            currentPage: 1,
             pagination: {
-                pageCount: 1,
-                page: 1
+                perPage: 20,
+                totalItems: 20,
             },
             status:'',
         }
     },
     components: {
-        MovieList,VPagination
+        MovieList,VueAwesomePaginate
     },
     methods: {
         getMovieByCategory(e) {
@@ -41,8 +42,9 @@ export default {
             }
             axios.post(this.api + `movies/category/search?page=${e}`,data, this.authHeader).then(r => {
                 this.movies = r.data.data;
-                this.pagination.pageCount = r.data.last_page;
-                this.pagination.page = r.data.current_page;
+                this.pagination.totalItems = r.data.total;
+                this.pagination.perPage = r.data.per_page;
+                this.currentPage = r.data.current_page;
                 if (r.data.data.length == 0) {
                     this.status = 'nothing';
                 }

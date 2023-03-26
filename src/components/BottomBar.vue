@@ -1,7 +1,7 @@
 <template>
     <div class="bottomBar">
         <div  class=" fixed bottom-0 w-full h-14 border-t-gray-400 dark:bg-black bg-slate-800 text-white border-t   grid grid-cols-4">
-        <router-link class="w-full block mt-1" to="/">
+        <router-link class="w-full block mt-1 ripple-bg-red-100" to="/">
             <div class="text-center">
                 <i class="fa-solid fa-house" :class="{'text-two-color':activePage == 'home'}"></i><br>
                 <small class="text-xs">Home</small>
@@ -42,6 +42,7 @@ export default {
         ...mapState(['activePage'])
     },
 }
+
 </script>
 
 <style lang="scss" scoped>

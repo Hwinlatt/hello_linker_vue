@@ -4,13 +4,10 @@
             <DisplayAds />
         </div>
         <div class="col-span-8">
-            <div>
-                <InArticleAdsVue />
-            </div>
             <div class="grid  grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5" v-if="data.length > 0">
                 <div v-for="(movie, index) in data" :key="index" class="m-1 cursor-pointer p-3"
                     @click="goToMovieInfo(movie.id)">
-                    <div class="relative w-full overflow-hidden ">
+                    <div class="relative w-full overflow-hidden rounded">
                         <img v-if="movie.image" :src="imagePath + movie.image" alt=""
                             class="hover:contrast-125 h-36  w-full object-fill transition hover:scale-110" srcset="">
                         <img v-else :src="movie.image_link" alt=""
@@ -59,9 +56,6 @@
                     <h1 class=" text-xl font-bold">There is Nothing To Show</h1>
                 </div>
             </div>
-            <div>
-                <InArticleAdsVue />
-            </div>
         </div>
         <div class="col-span-2">
             <DisplayAds />
@@ -72,7 +66,7 @@
 <script>
 import DisplayAds from '@/views/Ads/types/DisplayAds.vue';
 import { mapGetters } from 'vuex'
-import InArticleAdsVue from '@/views/Ads/types/InArticleAds.vue';
+// import InArticleAdsVue from '@/views/Ads/types/InArticleAds.vue';
 export default {
     name: "MovieList",
     props: {
@@ -85,7 +79,7 @@ export default {
         }
     },
     components: {
-        DisplayAds, InArticleAdsVue
+        DisplayAds
     },
     methods: {
         goToMovieInfo(mId) {

@@ -1,11 +1,11 @@
 <template>
     <div class="w-full sm:grid sm:grid-cols-12">
-        <div class="hidden sm:block sm:col-span-3">
+        <div class="sm:block sm:col-span-3">
             <DisplayAdsVue />
         </div>
         <div class="sm:col-span-6">
             <div>
-                <InArticleAdsVue></InArticleAdsVue>
+                <InFeedAdsVue></InFeedAdsVue>
             </div>
             <ul>
                 <li v-for="(category, index) in categories"
@@ -16,7 +16,7 @@
                 </li>
             </ul>
         </div>
-        <div class="hidden sm:block sm:col-span-2">
+        <div class="sm:block sm:col-span-2">
             <DisplayAdsVue />
         </div>
     </div>
@@ -25,8 +25,8 @@
 <script>
 import axios from 'axios';
 import { mapGetters } from 'vuex';
-import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
 import DisplayAdsVue from '../Ads/types/DisplayAds.vue';
+import InFeedAdsVue from '../Ads/types/InFeedAds.vue';
 export default {
     name: 'CategoryList',
     data() {
@@ -35,7 +35,7 @@ export default {
         }
     },
     components: {
-        DisplayAdsVue,InArticleAdsVue
+        DisplayAdsVue,InFeedAdsVue
     },
     methods: {
         goFilterByCategory(category) {

@@ -4,7 +4,7 @@ export default createStore({
   state: {
     ads: {
       //Make True To Show Ads on Production
-      show: true,
+      show: false,
       adClient: 'ca-pub-4711089720936751',
       displayAds: ['2434317999', '6565579201', '4222251810', '9318935328'],
       articleAds: ['4008516864', '7642396731'],
@@ -13,7 +13,8 @@ export default createStore({
     //Page Configs
     pageStatus: 'show', //loading , show
     activePage: 'home',
-    server: 'http://127.0.0.1:8000/',
+    // server: 'https://member.hellolinker.net/',
+    server:'http://127.0.0.1:8000/',
     navHeader: '',
     showMovId: localStorage.getItem('showMovId') || '',
     newShowMovId: localStorage.getItem('newShowMovId') || '',

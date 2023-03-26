@@ -11,60 +11,79 @@
                     <img class="w-full" v-else :src="movie.image_link" alt="Image" srcset="">
                 </div>
                 <div class="m-2 sm:col-span-3 items-center flex justify-center">
-                    <div>
-                        <h1 class="mt-3 mb-1 text-center text-xl text-two-color">Movie Info</h1>
+                    <div class="w-full">
+                        <h1 class="mt-3 mb-1 sm:hidden text-center text-xl text-two-color">Movie Info</h1>
                         <div class="line-mf mb-2"></div>
-                        <table class=" border-collapse border-2  border-indigo-600 m-auto text-sm">
-                            <tbody>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Actors</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.actors }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Director</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.director }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Studio</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.studio }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Released Date</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.released_date }}</td>
-                                </tr>
-                                <tr v-if="movie.type">
-                                    <td class="border border-indigo-600 px-4 py-2">Movie Type</td>
-                                    <td class="border border-indigo-600 px-4 py-2">
-                                        <span @click="categorySearch(t)"
-                                            v-for="(t, index) in stringToArray(movie.type, ',')" :key="index"
-                                            class="p-1 rounded bg-gradient-to-r dark:text-white from-blue-700 dark:to-black  backdrop-blur-sm text-sm mb-1 mr-1 font-sans  text-dark">
-                                            {{ t }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Rating</td>
-                                    <td class="border border-indigo-600 px-4 py-2">
-                                        <span><i v-for="index in 4" :key="index" class="fa-solid fa-star"
+                        <div class="overflow-hidden bg-white dark:bg-black shadow sm:rounded-lg">
+                            <div class="border-t border-gray-200 dark:border-slate-800">
+                                <dl>
+                                    <div
+                                        class="bg-gray-50 dark:bg-slate-900  px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm font-medium text-gray-500 dark:text-slate-400">Actors</dt>
+                                        <dd class="mt-1 text-sm dark:text-white text-gray-900 sm:col-span-2 sm:mt-0">{{
+                                            movie.actors }}</dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Director</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">{{
+                                            movie.director }}</dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Studio</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">{{
+                                            movie.studio }}</dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Release Date</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">{{
+                                            movie.released_at }}</dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Movie Types</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">
+                                            <div class="w-100 flex flex-wrap" v-if="movie.type">
+                                                <div @click="categorySearch(t)"
+                                                    v-for="(t, index) in stringToArray(movie.type, ',')" :key="index"
+                                                    class="p-1 cursor-pointer rounded bg-gradient-to-r dark:text-white from-indigo-700 dark:to-slate-900  backdrop-blur-sm text-sm mb-1 mr-1 font-sans  text-dark">
+                                                    {{ t }}
+                                                </div>
+                                            </div>
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Rating</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">
+                                            <span><i v-for="index in 4" :key="index" class="fa-solid fa-star"
                                                 :class="{ 'text-yellow-500': index <= movie.rating }"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">View</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.view_count }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-indigo-600 px-4 py-2">Total Download</td>
-                                    <td class="border border-indigo-600 px-4 py-2">{{ movie.download_count }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Views</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">
+                                            {{ movie.view_count }}
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="bg-white dark:bg-slate-900 border-t border-slate-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm  font-medium text-gray-500 dark:text-slate-400">Downloads</dt>
+                                        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:col-span-2 sm:mt-0">{{
+                                            movie.download_count }}</dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="p-3">
                 <h1 class="mt-3 mb-2 text-xl font-bold">Description</h1>
-                <InArticleAdsVue/>
+                <InArticleAdsVue />
                 <div
                     class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
                     <button @click="movie_desc_show('eng')"
@@ -79,20 +98,16 @@
                 </div>
                 <p v-if="movie.description"
                     class="dark:bg-gradient-to-r  dark:text-white dark:from-black bg-black/30 backdrop-blur-md dark:to-black p-2 rounded">
-                    <span v-if="stringToArray(movie.description, '|').length > 1">
-                        <span v-if="description.type == 'mm'">
-                            {{ stringToArray(movie.description, '|')[0] }}
-                        </span>
-                        <span v-if="description.type == 'eng'">
-                            {{ stringToArray(movie.description, '|')[1] }}
-                        </span>
+                    <span v-if="description.type == 'mm'">
+                        <!-- {{ stringToArray(movie.description, '|')[0] }} -->
+                        {{ movie.mm_description }}
                     </span>
-                    <span v-else>
+                    <span v-if="description.type == 'eng'">
                         {{ movie.description }}
                     </span>
                 </p>
             </div>
-            <DisplayAdsVue/>
+            <DisplayAdsVue />
             <div class=" my-2 text-center">
                 <button v-if="count == 0" @click="showMovIdStore(movie.id)"
                     class="py-2 px-3 animate-bounce text-white bg-gradient-to-r cursor-pointer from-indigo-700 to-pink-500 rounded-lg active:ring-2 hover:ring active:from-indigo-800 active:to-pink-800 hover:from-indigo-600 hover:to-pink-600">
@@ -121,7 +136,7 @@ import InArticleAdsVue from '../Ads/types/InArticleAds.vue';
 export default {
     name: 'MovieInfo',
     components: {
-        MovieList,DisplayAdsVue,InArticleAdsVue
+        MovieList, DisplayAdsVue, InArticleAdsVue
     },
     mixins: [usefulFunction],
     data() {

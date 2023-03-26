@@ -17,11 +17,13 @@ export default {
         }
     },
     mounted() {
-        try {
+        if (this.ads.show) {
+            try {
             // eslint-disable-next-line no-undef
             (adsbygoogle = window.adsbygoogle || []).push({})
         } catch (error) {
             console.log(error);
+        }
         }
     },
 }

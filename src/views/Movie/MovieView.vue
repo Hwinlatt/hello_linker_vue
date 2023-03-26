@@ -1,8 +1,8 @@
 <template>
     <div class="w-full">
-        <div class="w-full relative  mr-3 text-sm my-2">
+        <div class="w-full relative   mr-3 text-sm my-2">
             <span v-if="$route.query.s" class="ml-4 text-md">Search Key - <i>{{ $route.query.s }}</i> |
-                <router-link :to="{name:'movieList'}" class="text-blue-500">All</router-link>
+                <router-link :to="{ name: 'movieList' }" class="text-blue-500">All</router-link>
             </span>
             <div class=" float-right">
                 <i class="fa-solid fa-filter"></i>
@@ -17,15 +17,14 @@
         <DisplayAdsVue></DisplayAdsVue>
         <MovieList class="clear-both" :status="status" :data="movies"></MovieList>
         <div class="flex justify-center mt-3">
-            <v-pagination v-model="pagination.page" :pages="pagination.pageCount" :range-size="2" active-color="#DCEDFF"
-                @update:modelValue="getMovies" />
+            <vue-awesome-paginate :total-items="pagination.totalItems" v-model="currentPage"
+                :items-per-page="pagination.perPage" :max-pages-shown="4" :on-click="getMovies" />
         </div>
     </div>
 </template>
 
 <script>
 import MovieList from '@/components/MovieList.vue';
-import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import axios from 'axios';
 import { mapGetters, mapState } from 'vuex';
@@ -34,9 +33,10 @@ export default {
     name: 'MovieView',
     data() {
         return {
+            currentPage: 1,
             pagination: {
-                pageCount: 1,
-                page: 1
+                perPage: 20,
+                totalItems: 20,
             },
             sortBy: "new_arrive",
             movies: [],
@@ -44,7 +44,7 @@ export default {
         }
     },
     components: {
-        MovieList, VPagination,DisplayAdsVue
+        MovieList, DisplayAdsVue
     },
     watch: {
         '$route.query': {
@@ -59,17 +59,20 @@ export default {
         getMovies(e) {
             if (!e) {
                 e = this.cache.lastMoviePage;
+                this.currentPage = e;
             } else {
                 if (e != this.cache.lastMoviePage) {
                     window.scrollTo(0, 0);
                 }
-                this.$store.dispatch('saveCache', { name: 'lastMoviePage', data: e })
+                this.$store.dispatch('saveCache', { name: 'lastMoviePage', data: this.currentPage })
             }
             this.status = '';
             this.movies = [];
             axios.get(this.api + `movies?page=${e}&orderBy=${this.sortBy}&s=${this.searchKey}`, this.authHeader).then(r => {
                 this.movies = r.data.data;
                 this.pagination.pageCount = r.data.last_page;
+                this.pagination.totalItems = r.data.total;
+                this.pagination.perPage = r.data.per_page;
                 this.pagination.page = r.data.current_page;
                 if (r.data.data.length == 0) {
                     this.status = 'nothing';
@@ -89,11 +92,11 @@ export default {
     },
     mounted() {
         this.$store.dispatch('activePageChg', { name: 'movies' });
+        this.$store.dispatch('pageStatusChg', 'show');
         this.getMovies();
     },
 }
 </script>
 
-<style lang="scss" scoped>
 
-</style>
+<style lang="scss" scoped></style>
