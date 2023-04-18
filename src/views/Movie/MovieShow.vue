@@ -181,7 +181,7 @@ export default {
                 link = this.googleDriveDownload(link);
             }
             this.showFullScreenAds();
-            window.open(link);
+            window.location.href = link;
         },
         moviePlay(link) {
             this.movieContainer = '';

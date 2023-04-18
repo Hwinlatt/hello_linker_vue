@@ -27,7 +27,6 @@
 
 <script>
 import { mapState } from 'vuex';
-import $ from 'jquery'
 import DisplayAdsVue from './types/DisplayAds.vue';
 export default {
     name: 'FourAds.vue',
@@ -66,13 +65,12 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('activePageChg', { name: '', header: 'Show Ads' });
+        this.$store.dispatch('hideShowCtrl',[['bBar',false]]);
         this.continueBtnCount();
-        $('.bottomBar').addClass('hidden')
 
     },
     unmounted() {
-        $('.bottomBar').removeClass('hidden')
+        this.$store.dispatch('hideShowCtrl',[['bBar',true]]);
     },
 }
 </script>

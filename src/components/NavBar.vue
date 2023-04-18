@@ -1,5 +1,5 @@
 <template>
-    <nav class=" sticky top-0 z-50 w-full">
+    <nav class=" sticky top-0 z-50 w-full" v-if="navBar">
         <div class="flex h-12 dark:bg-black shadow-sm shadow-gray-400 bg-slate-800 text-white w-full items-center justify-between">
             <div class="flex items-center mx-2"  v-if="header.length == 0">
                 <img src="/img/linklogo-circle.png" class=" w-10 h-10" alt="" srcset="">
@@ -10,17 +10,17 @@
                 <h1 class="text-lg capitalize  ml-2">{{ header }}</h1>
             </div>
             <div class="mx-2">
-                <i class="fa-solid cursor-pointer fa-magnifying-glass searchInputBtn"></i>
+                <router-link :to="{name:'searchMovie'}"><i class="fa-solid cursor-pointer fa-magnifying-glass searchInputBtn"></i></router-link>
             </div>
         </div>
-        <div class="m-1">
+        <!-- <div class="m-1">
             <input @keypress.enter="searchMovie()" type="search" v-model="searchKey" class="w-full searchInput dark:bg-slate-700 dark:placeholder:text-slate-200 px-1 rounded-md border-0 outline-none p-2 focus:shadow-mds hidden dark:text-white" placeholder="Search Movies">
-        </div>
+        </div> -->
     </nav>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import {  mapState } from 'vuex'
 export default {
     name: 'NavBar',
     data() {
@@ -39,6 +39,9 @@ export default {
                 this.$router.push({name:'movieList'});
             }
         }
+    },
+    computed: {
+        ...mapState(['navBar'])
     },
     props: {
         header: {

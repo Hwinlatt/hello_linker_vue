@@ -16,42 +16,63 @@ const routes: Array<RouteRecordRaw> = [
   //Category
   {
     path: '/category',
-    name: 'category',
-    component: () => import('../views/Category/CategoryList.vue'),
+    children: [{
+      path: '',
+      name: 'category',
+      component: () => import('../views/Category/CategoryList.vue'),
+    }, {
+      path: ':name',
+      name: 'FilterByCategory',
+      component: () => import('../views/Category/CategoryMovieList.vue'),
+    },]
   },
-  {
-    path: '/category/:name',
-    name: 'FilterByCategory',
-    component: () => import('../views/Category/CategoryMovieList.vue'),
-  },
+
   //Movies
   {
     path: '/movies',
-    name: 'movieList',
-    component: () => import('../views/Movie/MovieView.vue'),
-  },
-  {
-    path: '/movies/:id',
-    name: 'movieInfo',
-    component: () => import('../views/Movie/MovieInfo.vue'),
-  },
-  {
-    path: '/movies/show',
-    name: 'showMovie',
-    component: () => import('../views/Movie/MovieShow.vue'),
+    children: [{
+      path: '',
+      name: 'movieList',
+      component: () => import('../views/Movie/MovieView.vue'),
+    }, {
+      path: ':id',
+      name: 'movieInfo',
+      component: () => import('../views/Movie/MovieInfo.vue'),
+    }, {
+      path: 'page/download',
+      name: 'showMovie',
+      component: () => import('../views/Movie/MovieShow.vue'),
+    },
+    {
+      path: 'page/search',
+      name: 'searchMovie',
+      component: () => import('../views/SearchView.vue'),
+    },
+    ]
   },
 
   //Actors
   {
     path: '/actors',
-    name: 'actorsList',
-    component: () => import('../views/Actors/ActorsList.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Actors/ActorsList.vue'),
+        name: 'actorsList',
+
+      },
+      {
+        path: ':name',
+        name: 'FilterByActor',
+        component: () => import('../views/Actors/ActorMovieList.vue'),
+      },
+    ]
   },
-  {
-    path: '/actors/:name',
-    name: 'FilterByActor',
-    component: () => import('../views/Actors/ActorMovieList.vue'),
-  },
+    {
+      path: '/collection',
+      name: 'collection',
+      component: () => import('../views/CollectionView.vue'),
+    },
   //Ads Routes
   {
     path: '/four-ads',
@@ -66,6 +87,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/not_found',
     name: 'notFound',
     component: () => import('../views/errors/404View.vue'),
+  },
+  {
+    path: '/coming_soon',
+    name: 'comingSoon',
+    component: () => import('../views/errors/ComingSoon.vue'),
   },
 
 ]

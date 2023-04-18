@@ -2,7 +2,7 @@
     <div class="w-full">
         <div class="w-full relative   mr-3 text-sm my-2">
             <span v-if="$route.query.s" class="ml-4 text-md">Search Key - <i>{{ $route.query.s }}</i> |
-                <router-link :to="{ name: 'movieList' }" class="text-blue-500">All</router-link>
+                <router-link :to="{ name: 'movieList' }" class="text-blue-500">All Movies</router-link>
             </span>
             <div class=" float-right">
                 <i class="fa-solid fa-filter"></i>

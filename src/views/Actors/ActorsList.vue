@@ -77,10 +77,10 @@ export default {
         ...mapState(['cache'])
     },
     mounted() {
-        this.$store.dispatch('activePageChg', { name: 'actors' });
+        this.$store.dispatch('activePageChg', { name: 'actors',header:'By Actors' });
         setTimeout(() => {
             this.getActorsList();
-        }, 10);
+        }, 1);
     },
 }
 </script>

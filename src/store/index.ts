@@ -3,19 +3,22 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     ads: {
-      //Make True To Show Ads on Production
+      //*Make True To Show Ads on Production
       show: false,
       adClient: 'ca-pub-4711089720936751',
       displayAds: ['2434317999', '6565579201', '4222251810', '9318935328'],
       articleAds: ['4008516864', '7642396731'],
       inFeedAds: ['9516220725'],
     },
-    //Page Configs
+    //*Page Configs
     pageStatus: 'show', //loading , show
     activePage: 'home',
-    // server: 'https://member.hellolinker.net/',
-    server:'http://127.0.0.1:8000/',
+    server: 'https://member.hellolinker.net/',
+    // server: 'http://127.0.0.1:8000/',
     navHeader: '',
+    //*Ui Control
+    bBar: true, //buttom bar
+    navBar: true,
     showMovId: localStorage.getItem('showMovId') || '',
     newShowMovId: localStorage.getItem('newShowMovId') || '',
     security: {
@@ -24,6 +27,7 @@ export default createStore({
     cache: {
       lastMoviePage: 1,
       actors_list: [],
+      homePageData:{},
     },
   },
   getters: {
@@ -70,6 +74,18 @@ export default createStore({
         state.cache.lastMoviePage = value.data;
       } else if (value.name == 'actors_list') {
         state.cache.actors_list = value.data;
+      }else if (value.name == 'homePage') {
+       state.cache.homePageData = value.data; 
+      }
+    },
+    hideShowCtrl: ({ state }, array) => {
+      for (let i = 0; i < array.length; i++)  {
+        if (array[i][0] == 'bBar') {
+          state.bBar = array[i][1]
+        }
+        if (array[i][0] == 'navBar') {
+          state.navBar = array[i][1]
+        }
       }
     },
   },

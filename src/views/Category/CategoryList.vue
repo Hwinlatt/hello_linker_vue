@@ -53,7 +53,7 @@ export default {
         ...mapGetters(['api', 'authHeader'])
     },
     mounted() {
-        this.$store.dispatch('activePageChg', { name: 'category' });
+        this.$store.dispatch('activePageChg', { name: 'collection',header:'By Category' });
         this.getCategoryList();
     },
 }

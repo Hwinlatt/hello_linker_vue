@@ -29,7 +29,7 @@
 import SlideShowCarousel from '@/components/carousels/SlideShowCarousel.vue';
 import axios from 'axios'
 import CardCarousel from '@/components/carousels/CardCarousel.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import DisplayAdsVue from './Ads/types/DisplayAds.vue';
 export default {
   name: "HomeView",
@@ -45,23 +45,35 @@ export default {
     SlideShowCarousel, CardCarousel, DisplayAdsVue
   },
   methods: {
-    getHomePageData() {
+     getHomePageData() {
+      if (this.cache.homePageData.popularMovies?.length > 0) {
+        this.inputData(this.cache.homePageData);
+        return;
+      }
       this.$store.dispatch('pageStatusChg', 'loading');
       axios.get(this.api + 'home', this.authHeader).then(r => {
-        this.slideShows = r.data.slideShow;
-        this.popularMov = r.data.popularMovies;
-        this.newMov = r.data.newMovies;
-        this.mostDownMov = r.data.mostDownloadMoves;
+        this.inputData(r.data);
         this.$store.dispatch('pageStatusChg', 'show');
+        this.$store.dispatch('saveCache', { name: 'homePage', data: r.data });
       })
+    },
+    inputData(data) {
+      this.slideShows = data.slideShow;
+      this.popularMov = data.popularMovies;
+      this.newMov = data.newMovies;
+      this.mostDownMov = data.mostDownloadMoves;
     }
   },
   computed: {
-    ...mapGetters(['api', 'authHeader'])
+    ...mapGetters(['api', 'authHeader']),
+    ...mapState(['cache'])
   },
   mounted() {
-    this.$store.dispatch('activePageChg', { name: 'home' });
     this.getHomePageData();
+  },
+  created () {
+    this.$store.dispatch('activePageChg', { name: 'home' });
+
   },
 }
 </script>
