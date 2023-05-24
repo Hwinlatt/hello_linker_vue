@@ -64,6 +64,8 @@ export default {
     },
     methods: {
         searchMovie(key) {
+            this.$store.dispatch('saveCache',{name:'lastMoviePage',data:1});
+            console.log(this.$store.state.cache);
             if (!key) {
                 key = this.searchKey.trim();
             }
