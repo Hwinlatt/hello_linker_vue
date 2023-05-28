@@ -11,7 +11,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: () => import('../views/More/AboutView.vue')
+  },
+  {
+    path: '/privacy&policy',
+    name: 'privacy&policy',
+    component: () => import('../views/More/Privacy&PolicyView.vue')
+  },
+  {
+    path: '/contact_us',
+    name: 'contact',
+    component: () => import('../views/More/ContactView.vue')
+  },
+  {
+    path: '/more',
+    name: 'more',
+    component: () => import('../views/More/MorePage.vue')
   },
   //Category
   {
