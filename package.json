@@ -9,6 +9,7 @@
     "tailwindcss": "npx tailwindcss -i ./src/index.css -o ./public/css/app.css --watch"
   },
   "dependencies": {
+    "@capacitor/android": "^5.0.4",
     "@headlessui/vue": "^1.7.9",
     "@hennge/vue3-pagination": "^1.0.17",
     "@heroicons/vue": "^2.0.14",
@@ -25,6 +26,9 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@capacitor/assets": "^2.0.4",
+    "@capacitor/cli": "^5.0.4",
+    "@capacitor/core": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-eslint": "~5.0.0",

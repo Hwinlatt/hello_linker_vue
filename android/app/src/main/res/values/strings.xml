@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HelloLinker</string>
+    <string name="title_activity_main">HelloLinker</string>
+    <string name="package_name">com.example.hellolinker</string>
+    <string name="custom_url_scheme">com.example.hellolinker</string>
+</resources>
